@@ -1,0 +1,728 @@
+---
+title: "R Notebook"
+output:
+  html_notebook: default
+  word_document:
+    reference_docx: template.docx
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,eval = TRUE,warning = FALSE,message = FALSE)
+```
+
+# First steps
+## Loading Librairies
+```{r}
+library(tidyverse)
+library(ggrepel)
+library(formattable)
+
+customGreen0 = "#DeF7E9"
+customGreen = "#71CA97"
+customRed = "#ff7f7f"
+customOrange = "#F58F28"
+```
+
+##Loading Devices data 
+In that case the csv generated used the tabulation separator. Adapt the delim parameter to your specific use case (coma, semicolon etc).
+```{r}
+df <- read_delim(file = "./data-raw/DEX_Device_data_Blacstone_April2020.csv", delim = "\t")
+df$`System boot duration baseline [s]` <- as.numeric(df$`System boot duration baseline [s]`)
+df$`Logon duration baseline [s]` <- as.numeric(df$`Logon duration baseline [s]`)
+df$`Number of cores` <- as.numeric(df$`Number of cores`)
+head(df)
+```
+
+## Loading Application data
+```{r}
+df.app <- read_delim(file = "./data-raw/DEX_App_data_Blacstone_April2020.csv", delim = "\t")
+df.app <- df.app %>%
+  mutate(`Average memory usage per execution [MB]` = round(`Average memory usage per execution [bytes]`/(1024^2),2)) %>%
+  select(everything(), -`Average memory usage per execution [bytes]`)
+head(df.app)
+```
+
+
+## Loading Chrome Data
+```{r}
+df.chr <- read_delim(file = "./data-raw/DEX_Chrome_Blacstone_April2020.csv", delim = "\t")
+df.chr <- df.chr %>%
+  mutate(`Average memory usage per execution [MB]` = round(`Average memory usage per execution [bytes]`/(1024^2),1)) %>%
+  select(everything(), -`Average memory usage per execution [bytes]`)
+head(df.chr)
+```
+
+## Load Office Data
+```{r}
+df.office <- read_delim(file = "./data-raw/DEX_Office_Blacstone_April2020.csv", delim = "\t", col_types = cols(`Average memory usage per execution [bytes]` = col_number()) )
+df.office <- df.office %>%
+  mutate(`Average memory usage per execution [MB]` = round(`Average memory usage per execution [bytes]`/(1024^2),1)) %>%
+  select(everything(), -`Average memory usage per execution [bytes]`, -`Application name`)
+head(df.office)
+```
+
+# Devices
+## DXS vs. OS Version and architecture
+```{r fig.width=13,fig.height=8}
+df %>%
+  group_by(`OS version and architecture`) %>%
+  summarize(`Number of devices` = n(),
+   dex_score = mean(`Digital Experience Score (Digital Experience Score)`)) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Windows", "W")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Enterprise", "E")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Professional", "Pro")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"(64 bits)", "64")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"(32 bits)", "32")) %>%
+  arrange(desc(`Number of devices`)) %>%
+  ungroup() %>%
+  ggplot(mapping = aes(x = reorder(`OS version and architecture`, -`Number of devices`))) +
+  geom_bar(mapping = aes(y = `Number of devices`), stat = "identity", fill = "#1046A8", colour = "black") +
+  geom_line(mapping = aes(y = dex_score * 300), colour = "#3194F7", group = 1) +
+  geom_point(mapping = aes(y = dex_score * 300), colour = "#F9BA37", group = 1) +
+  geom_text(mapping = aes(y = dex_score * 300, label = round(dex_score,1)), colour = "#FF7461", fontface="bold",group = 1, size = 5, vjust = -1) +
+  scale_y_continuous(sec.axis = sec_axis(trans = ~ . /300, name = "DeX")) +
+  theme_minimal() +
+  labs(x = "") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15),
+        axis.text.y = element_text(size=12),
+        axis.title = element_text(size=15))
+ggsave("images/OS_dex_number_of_devices.png")
+```
+
+
+## DXS by Device Model
+### All but Lenovo
+```{r fig.width=17,fig.height=9}
+df %>%
+  filter(`Device manufacturer` != "Lenovo") %>%
+  group_by(`Device model`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = mean(`DXS - Device (DXS - Device)`, na.rm = T),
+            DXS_Boot = mean(`Boot speed (DXS - Device)`, na.rm = T),
+            DXS_Logon = mean(`Logon duration (DXS - Device)`, na.rm = T),
+            DXS_BSOD = mean(`BSODs (DXS - Device)`, na.rm = T),
+            DXS_Reset = mean(`Hard resets (DXS - Device)`, na.rm = T),
+            DXS_Free_Space = mean(`System free space (DXS - Device)`, na.rm = T),
+            DXS_CPU = mean(`CPU usage (DXS - Device)`, na.rm = T),
+            DXS_Memory = mean(`Memory usage (DXS - Device)`, na.rm = T)
+            ) %>%
+  ungroup() %>%
+  filter(number_of_devices >=25) %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "score", -`Device model`,-number_of_devices) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  ggplot(mapping = aes(x = reorder(`Device model`, -number_of_devices), y=score, fill = DXS)) +
+  geom_bar(stat = "identity", position = "stack", alpha=0.8, color="black") +
+  geom_text(aes(label=round(score,1), colour=score), position=position_stack(vjust = 0.5), size=6, show.legend = F) +
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5)+
+  scale_fill_manual(values = c("#111F65", "#3194F7", "#1046A8", "#F9BA37", "#BA74D2", "#08B3AB", "#FF7461", "#B3BBC8")) +
+  scale_colour_continuous(low="red", high="black")+
+  theme_void()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1,size = 14),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+ggsave("images/DXS_DeviceModel_number_of_devices.png")
+```
+
+
+### Lenovo
+```{r fig.width=20,fig.height=15}
+df %>%
+  filter(`Device manufacturer` == "Lenovo") %>%
+  group_by(`Device product version`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = mean(`DXS - Device (DXS - Device)`, na.rm = T),
+            DXS_Boot = mean(`Boot speed (DXS - Device)`, na.rm = T),
+            DXS_Logon = mean(`Logon duration (DXS - Device)`, na.rm = T),
+            DXS_BSOD = mean(`BSODs (DXS - Device)`, na.rm = T),
+            DXS_Reset = mean(`Hard resets (DXS - Device)`, na.rm = T),
+            DXS_Free_Space = mean(`System free space (DXS - Device)`, na.rm = T),
+            DXS_CPU = mean(`CPU usage (DXS - Device)`, na.rm = T),
+            DXS_Memory = mean(`Memory usage (DXS - Device)`, na.rm = T)
+  ) %>%
+  ungroup() %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "score", -`Device product version`,-number_of_devices) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  filter(score >0) %>%
+  ggplot(mapping = aes(x = reorder(`Device product version`, -number_of_devices), y=score, fill = DXS)) +
+  geom_bar(stat = "identity", position = "stack", alpha=0.8, color="black") +
+  geom_text(aes(label=round(score,1), colour=score),position=position_stack(vjust = 0.5), size=5, show.legend = F) +
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5)+
+  scale_fill_manual(values = c("#111F65", "#3194F7", "#1046A8", "#F9BA37", "#BA74D2", "#08B3AB", "#FF7461", "#B3BBC8")) +
+  scale_colour_continuous(low="red", high="black")+
+  theme_void()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1,size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=16))
+
+ggsave("images/DXS_Lenovo_number_of_devices.png")
+```
+
+## CPU
+```{r fig.width=22,fig.height=15}
+df %>%
+  group_by(`CPU model`) %>%
+  summarize(number_of_devices = n(),
+            `High CPU Time Ratio (mean)` = mean(`High device overall CPU time ratio [%]`, na.rm = T),
+            `DXS CPU` = round(mean(`CPU usage (DXS - Device)`, na.rm = T),1),
+            `DXS Device`= round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1)
+            ) %>%
+  arrange(-number_of_devices) %>%
+  filter(number_of_devices > 5) %>%
+  #na.omit() %>%
+  gather(key="DXS", value = "Score", -`CPU model`,-number_of_devices, -`High CPU Time Ratio (mean)`) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS ", ""),
+         `CPU model` = str_replace(`CPU model`, " @ ", "\n")) %>%
+  filter(number_of_devices >25) %>%
+  ggplot(mapping = aes(x = `CPU model`))+
+  geom_bar(mapping = aes(y=Score, fill = DXS), stat = "identity", position = "dodge", color="black", alpha=0.8)+
+  geom_point(mapping = aes(y = `High CPU Time Ratio (mean)`*10), color="red", stat = "identity")+
+  geom_label_repel(aes(y = `High CPU Time Ratio (mean)`*10, label= paste(round(`High CPU Time Ratio (mean)`,2),"%")),stat = "unique",size=6)+
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=6)+
+  scale_y_continuous(sec.axis = sec_axis(~./10, name = "High CPU time ratio (%)")) +
+  scale_fill_manual(values = c("#111F65", "#3194F7"))+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1,size = 16),
+        axis.title = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        legend.text = element_text(size = 16),
+        legend.title = element_text(size=16))
+
+ggsave("images/CPU_DEX_number_of_devices.png")
+
+```
+
+## Memory
+```{r fig.width=17,fig.height=12}
+df %>%
+  mutate(`Total RAM [bytes]` = `Total RAM [bytes]`/(1024^3)) %>%
+  mutate(`Total RAM [bytes]` = factor(`Total RAM [bytes]`)) %>%
+  group_by(`Total RAM [bytes]`) %>%
+  summarize(number_of_devices = n(),
+            `High device memory time ratio [%]` = mean(`High device memory time ratio [%]`, na.rm = T),
+            `DXS Memory` = round(mean(`Memory usage (DXS - Device)`, na.rm = T),1),
+            `DXS Device`= round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1)
+            ) %>%
+  arrange(-number_of_devices) %>%
+  filter(number_of_devices > 5) %>%
+  na.omit() %>%
+  gather(key="DXS", value = "Score", -`Total RAM [bytes]`,-number_of_devices, -`High device memory time ratio [%]`) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS ", "")) %>%
+  filter(number_of_devices > 10) %>%
+  ggplot(mapping = aes(x = `Total RAM [bytes]`))+
+  geom_bar(mapping = aes(y=Score, fill = DXS), stat = "identity", position = "dodge", color="black", alpha=0.8)+
+  geom_point(mapping = aes(y = `High device memory time ratio [%]`/10), color="red", stat = "identity")+
+  geom_line(mapping = aes(y = `High device memory time ratio [%]`/10), color="red", stat = "identity", group=1)+
+  geom_label_repel(aes(y = `High device memory time ratio [%]`/10, label= paste(round(`High device memory time ratio [%]`,2),"%")),stat = "unique", size=5)+
+  geom_label(aes(y =-0.2, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5)+
+  scale_y_continuous(sec.axis = sec_axis(~.*10, name = "High Memory time ratio")) +
+  scale_fill_manual(values = c("#111F65", "#3194F7"))+
+  theme_minimal()+
+  labs(x="RAM")+
+  theme(axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+ggsave("images/Memory_DEX_number_of_devices.png")
+```
+
+
+## Boot
+### General
+```{r fig.width=17,fig.height=12}
+df %>%
+  group_by(boot_interval = cut_width(`System boot duration baseline [s]`, 10, boundary = 10)) %>%
+  summarize(number_of_devices = n()) %>%
+  na.omit() %>%
+  filter(number_of_devices > 20) %>%
+  ggplot(mapping = aes(x=boot_interval)) +
+  geom_bar(aes(y=number_of_devices), stat = "identity", fill="#111F65", color="black") +
+  geom_label(aes(y =number_of_devices, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5)+
+  theme_minimal() +
+  labs(x="Boot time (s)", y="Number of devices")+
+  theme(axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16))
+
+```
+
+### All Models (exluding Lenovo)
+```{r echo=FALSE, eval=TRUE, fig.align="center", message=FALSE, fig.width=17,fig.height=12}
+df %>%
+  filter(`Device manufacturer` != "Lenovo") %>%
+  group_by(`Device model`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = mean(`DXS - Device (DXS - Device)`, na.rm = T),
+            DXS_Boot = mean(`Boot speed (DXS - Device)`, na.rm = T),
+            Boot_duration = mean(`System boot duration baseline [s]`, na.rm = T)
+            ) %>%
+  ungroup() %>%
+  filter(number_of_devices >=25) %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -`Device model`,-number_of_devices,-Boot_duration) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  ggplot(mapping = aes(x = reorder(`Device model`, -number_of_devices)))+
+  geom_bar(mapping = aes(y=Score, fill = DXS), stat = "identity", position = "dodge", color="black", alpha=0.8)+
+  geom_point(mapping = aes(y = Boot_duration/10), color="red", stat = "identity")+
+  geom_label_repel(aes(y = Boot_duration/10, label= paste(round(Boot_duration,1),"s")),stat = "unique", size=5)+
+  geom_label(aes(y =-0.1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5)+
+  scale_y_continuous(sec.axis = sec_axis(~.*10, name = "Boot duration (s)")) +
+  scale_fill_manual(values = c("#111F65", "#3194F7"))+
+  theme_minimal()+
+  labs(x="")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1,size = 16),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+ggsave("images/DXS_All_noLenovo_boot.png")
+
+```
+
+### Lenovo only
+```{r fig.width=17,fig.height=12}
+df %>%
+  filter(`Device manufacturer` == "Lenovo") %>%
+  group_by(`Device product version`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = mean(`DXS - Device (DXS - Device)`, na.rm = T),
+            DXS_Boot = mean(`Boot speed (DXS - Device)`, na.rm = T),
+            Boot_duration = mean(`System boot duration baseline [s]`, na.rm = T)
+            ) %>%
+  ungroup() %>%
+  filter(number_of_devices >=5) %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -`Device product version`,-number_of_devices,-Boot_duration) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  ggplot(mapping = aes(x = reorder(`Device product version`, -number_of_devices)))+
+  geom_bar(mapping = aes(y=Score, fill = DXS), stat = "identity", position = "dodge", color="black", alpha=0.8)+
+  geom_point(mapping = aes(y = Boot_duration/10), color="red", stat = "identity")+
+  geom_label_repel(aes(y = Boot_duration/10, label= paste(round(Boot_duration,1)," sec")),stat = "unique", size=5)+
+  geom_label(aes(y =-0.2, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5)+
+  scale_y_continuous(sec.axis = sec_axis(~.*10, name = "Boot duration (s)")) +
+  scale_fill_manual(values = c("#111F65", "#3194F7"))+
+  labs(x="")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1,size = 16),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+ggsave("images/DXS_All_noLenovo_boot.png")
+
+```
+
+### OS
+```{r fig.width=13,fig.height=8}
+df %>%
+  group_by(`OS version and architecture`) %>%
+  summarize(`number_of_devices` = n(),
+            DXS_Device = mean(`DXS - Device (DXS - Device)`, na.rm = T),
+            DXS_Boot = mean(`Boot speed (DXS - Device)`, na.rm = T),
+            Boot_duration = mean(`System boot duration baseline [s]`, na.rm = T)) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Windows", "W")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Enterprise", "E")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Professional", "Pro")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"(64 bits)", "64")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"(32 bits)", "32")) %>%
+  arrange(desc(`number_of_devices`)) %>%
+  ungroup() %>%
+  filter(number_of_devices >=5) %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -`OS version and architecture`,-number_of_devices,-Boot_duration) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  ggplot(mapping = aes(x = reorder(`OS version and architecture`, -number_of_devices)))+
+  geom_bar(mapping = aes(y=Score, fill = DXS), stat = "identity", position = "dodge", color="black", alpha=0.8)+
+  geom_point(mapping = aes(y = Boot_duration/10), color="red", stat = "identity")+
+  geom_label_repel(aes(y = Boot_duration/10, label= paste(round(Boot_duration,1)," sec")),stat = "unique", size=5)+
+  geom_label(aes(y =-0.3, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white",size=5)+
+  scale_y_continuous(sec.axis = sec_axis(~.*10, name = "Boot duration (s)")) +
+  scale_fill_manual(values = c("#111F65", "#3194F7"))+
+  theme_minimal()+
+  labs(x="")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1,size = 16),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+ggsave("images/DXS_OS_boot.png")
+```
+
+## Logon
+```{r fig.width=17,fig.height=12}
+df %>%
+  group_by(logon_interval = cut_width(`Logon duration baseline [s]`, 10, boundary = 10)) %>%
+  summarize(number_of_devices = n(),
+            network_response = mean(`Average network response time [ms]`,na.rm = T)) %>%
+  na.omit() %>%
+  filter(number_of_devices > 20) %>%
+  ggplot(mapping = aes(x=logon_interval)) +
+  geom_bar(aes(y=number_of_devices), stat = "identity", fill="#111F65", color="black",alpha=0.9) +
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white",size=5) +
+  geom_point(aes(y=network_response*10))+
+  geom_line(aes(y=network_response*10), group=1, color="#FF7461")+
+  scale_y_continuous(sec.axis = sec_axis(~./10, name = "Network response time (ms)")) +
+  theme_minimal()+
+  labs(x="Logon time (s)", y="Number of devices")+
+  theme(axis.text.x = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        axis.title.y.right  = element_text(size = 16, colour = "red"),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+```
+
+### AD Site
+```{r fig.width=17,fig.height=12}
+df %>%
+  group_by(`AD site`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1),
+            DXS_logon = round(mean(`Logon duration (DXS - Device)`, na.rm = T),1),
+            logon_response_time = round(mean(`Logon duration baseline [s]`, na.rm = T),1),
+            network_response = round(mean(`Average network response time [ms]`, na.rm = T),1)) %>%
+  ungroup() %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -network_response,-number_of_devices,-logon_response_time,-`AD site`) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  filter(number_of_devices > 25) %>%
+  ggplot(mapping = aes(x = `AD site`)) +
+  geom_col(aes(y = network_response), width = .4, fill = "#111F65", position = position_nudge(-.2), colour = "Black") +
+  geom_col(aes(y = logon_response_time*5), fill = "#3194F7", width = .4, position = position_nudge(.2), colour = "Black")+
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5) +
+  scale_y_continuous(sec.axis = sec_axis(~./5, name="Logon time (s)"))+
+  labs(y = "Network Response Time (ms)", fill = "OS") +
+  theme_minimal()+
+   theme(axis.text.x = element_text(size = 16),
+         axis.title.y.left = element_text(size = 16, colour = "#111F65"),
+         axis.title.y.right  = element_text(size = 16, colour = "#3194F7"),
+         axis.text = element_text(size = 16),
+         axis.title = element_text(size = 16),
+         legend.text = element_text(size = 14),
+         legend.title = element_text(size=14))
+
+```
+
+
+### Devices (no Lenovo)
+```{r fig.width=20,fig.height=14}
+df %>%
+  filter(`Device manufacturer` != "Lenovo") %>%
+  group_by(`Device model`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1),
+            DXS_logon = round(mean(`Logon duration (DXS - Device)`, na.rm = T),1),
+            logon_response_time = round(mean(`Logon duration baseline [s]`, na.rm = T),1),
+            network_response = round(mean(`Average network response time [ms]`, na.rm = T),1)) %>%
+  ungroup() %>%
+  filter(number_of_devices >=25) %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -network_response,-number_of_devices,-logon_response_time,-`Device model`) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  filter(number_of_devices > 25) %>%
+  ggplot(mapping = aes(x = `Device model`)) +
+  geom_col(aes(y = network_response), width = .4, fill = "#111F65", position = position_nudge(-.2), colour = "Black") +
+  geom_col(aes(y = logon_response_time*5), fill = "#3194F7", width = .4, position = position_nudge(.2), colour = "Black")+
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5) +
+  scale_y_continuous(sec.axis = sec_axis(~./5, name="Logon time (s)"))+
+  labs(y = "Network Response Time (ms)", fill = "OS") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 16, angle = 45, hjust = 1),
+        axis.title.y.left = element_text(size = 16, colour = "#111F65"),
+        axis.title.y.right  = element_text(size = 16, colour = "#3194F7"),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+```
+
+
+### Devices (only Lenovo)
+```{r fig.width=17,fig.height=12}
+df %>%
+  filter(`Device manufacturer` == "Lenovo") %>%
+  group_by(`Device product version`) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1),
+            DXS_logon = round(mean(`Logon duration (DXS - Device)`, na.rm = T),1),
+            logon_response_time = round(mean(`Logon duration baseline [s]`, na.rm = T),1),
+            network_response = round(mean(`Average network response time [ms]`, na.rm = T),1)) %>%
+  ungroup() %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -network_response,-number_of_devices,-logon_response_time,-`Device product version`) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  filter(number_of_devices >= 5) %>%
+  ggplot(mapping = aes(x = `Device product version`)) +
+  geom_col(aes(y = network_response), width = .4, fill = "#111F65", position = position_nudge(-.2), colour = "Black") +
+  geom_col(aes(y = logon_response_time*5), fill = "#3194F7", width = .4, position = position_nudge(.2), colour = "Black")+
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white",size=5) +
+  scale_y_continuous(sec.axis = sec_axis(~./5, name="Logon time (s)"))+
+  labs(y = "Network Response Time (ms)", fill = "OS") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 16, angle = 45, hjust = 1),
+        axis.title.y.left = element_text(size = 16, colour = "#111F65"),
+        axis.title.y.right  = element_text(size = 16, colour = "#3194F7"),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+```
+
+```{r fig.width=17,fig.height=12}
+df %>%
+  group_by(`OS version and architecture`) %>%
+  summarize(`number_of_devices` = n(),
+            DXS_Device = round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1),
+            DXS_logon = round(mean(`Logon duration (DXS - Device)`, na.rm = T),1),
+            logon_response_time = round(mean(`Logon duration baseline [s]`, na.rm = T),1),
+            network_response = round(mean(`Average network response time [ms]`, na.rm = T),1)) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Windows", "W")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Enterprise", "E")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"Professional", "Pro")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"(64 bits)", "64")) %>%
+  mutate(`OS version and architecture` = str_replace_all(`OS version and architecture`,"(32 bits)", "32")) %>%
+  arrange(desc(`number_of_devices`)) %>%
+  ungroup() %>%
+  filter(number_of_devices >=5) %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -network_response,-number_of_devices,-logon_response_time,-`OS version and architecture`) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  filter(number_of_devices >= 5) %>%
+  ggplot(mapping = aes(x = `OS version and architecture`)) +
+  geom_col(aes(y = network_response), width = .4, fill = "#111F65", position = position_nudge(-.2), colour = "Black") +
+  geom_col(aes(y = logon_response_time*5), fill = "#3194F7", width = .4, position = position_nudge(.2), colour = "Black")+
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white", size=5) +
+  scale_y_continuous(sec.axis = sec_axis(~./5, name="Logon time (s)"))+
+  labs(y = "Network Response Time (ms)", fill = "OS") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 16, angle = 45, hjust = 1),
+        axis.title.y.left = element_text(size = 16, colour = "#111F65"),
+        axis.title.y.right  = element_text(size = 16, colour = "#3194F7"),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+```
+
+
+### RAM
+```{r fig.width=17,fig.height=12}
+df %>%
+  group_by(ram = cut_width(`Total RAM [bytes]`/(1024^3), 10, boundary = 10)) %>%
+  summarize(number_of_devices = n(),
+            DXS_Device = round(mean(`DXS - Device (DXS - Device)`, na.rm = T),1),
+            DXS_logon = round(mean(`Logon duration (DXS - Device)`, na.rm = T),1),
+            logon_time = round(mean(`Logon duration baseline [s]`, na.rm = T),1),
+            network_response = round(mean(`Average network response time [ms]`, na.rm = T),1)) %>%
+  na.omit() %>%
+  arrange(desc(number_of_devices)) %>%
+  na.omit() %>%
+  gather(key  = "DXS", value = "Score", -network_response,-number_of_devices,-logon_time,-ram) %>%
+  mutate(`DXS` = str_replace_all(`DXS`,"DXS_", "")) %>%
+  filter(number_of_devices > 5) %>%
+  ggplot(mapping = aes(x = ram)) +
+  geom_col(aes(y = network_response), width = .4, fill = "#111F65", position = position_nudge(-.2), colour = "Black") +
+  geom_col(aes(y = logon_time*5), fill = "#3194F7", width = .4, position = position_nudge(.2), colour = "Black")+
+  geom_label(aes(y =-1, label=paste(number_of_devices, " devices")), show.legend = F, fill = "white",size=5) +
+  scale_y_continuous(sec.axis = sec_axis(~./5, name="Logon time (s)"))+
+  labs(y = "Network Response Time (ms)", x="RAM") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 16),
+        axis.title.y.left = element_text(size = 16, colour = "#111F65"),
+        axis.title.y.right  = element_text(size = 16, colour = "#3194F7"),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+```
+
+## BSOD and Hard Resets
+### Hard Resets
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df %>%
+  group_by(`Number of hard resets`) %>%
+  summarize(`Number of devices` = n()) %>%
+  formattable(
+              align=c("l","l"))
+```
+
+### Crahses
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df %>%
+  group_by(`Number of system crashes`) %>%
+  summarize(`Number of devices` = n()) %>%
+  formattable(
+              align=c("l","l"))
+```
+
+### Hard resets vs RAM
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+ram_interval <- c("0-4","4-8","8-12","12-16","16-20","28-32")
+df %>%
+  group_by(`RAM (GB)` = cut_width(`Total RAM [bytes]`/(1024^3), 4, boundary = 4)) %>%
+  summarize(`Number of devices` = n(),
+            `Average Number of hard resets` = mean(`Number of hard resets`),
+            `Average number of app crashes` = round(mean(`Number of application crashes`),0),
+            `Average number of app freezes` = round(mean(`Number of application not responding events`),0)) %>%
+  filter(`Number of devices` > 20) %>%
+  mutate(`RAM (GB)` = ram_interval) %>%
+  formattable(align = c("c","c","c","c","c"))
+
+```
+
+### Crashes vs RAM
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+ram_interval <- c("0-4","4-8","8-12","12-16","16-20","28-32")
+df %>%
+  group_by(`RAM (GB)` = cut_width(`Total RAM [bytes]`/(1024^3), 4, boundary = 4)) %>%
+  summarize(`Number of devices` = n(),
+            `Average Number of system crashes` = mean(`Number of system crashes`),
+            `Average number of app crashes` = round(mean(`Number of application crashes`),0),
+            `Average number of app freezes` = round(mean(`Number of application not responding events`),0)) %>%
+  filter(`Number of devices` > 20) %>%
+  mutate(`RAM (GB)` = ram_interval) %>%
+  formattable(align = c("c","c","c","c","c"))
+
+
+```
+
+## Disk Space
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df %>%
+  group_by(disk_space_interval = cut_width(`System drive free space [bytes]`/(1024^3), 20, boundary = 0)) %>%
+  summarize(number_of_devices = n()) %>%
+  filter(number_of_devices >=25)%>%
+  ggplot(mapping = aes(x=disk_space_interval)) +
+  geom_bar(aes(y=number_of_devices), stat = "identity", fill="#111F65", color = "black")+
+  labs(x="Disk space (GB)", y="Number of devices")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 16, angle = 45, hjust = 1),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+```
+
+
+## Memory
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df %>%
+  group_by(high_memory_ratio = cut_width(`High device memory time ratio [%]`, 10, boundary = 0)) %>%
+  summarize(number_of_devices = n(),
+            memory=round(mean(`Total RAM [bytes]`/(1024^3)),0)) %>%
+  filter(number_of_devices >=20) %>%
+  ggplot(mapping = aes(x=high_memory_ratio)) +
+  geom_bar(aes(y=number_of_devices), stat = "identity",fill="#111F65", color = "black")+
+  geom_line(aes(y=memory*100), group=1)+
+  geom_point(aes(y=memory*100))+
+  geom_label_repel(aes(y=memory*100, label= paste(memory, " GB")),stat = "unique", size=5)+
+  scale_y_continuous(sec.axis = sec_axis(~./100, name="RAM (GB)"))+
+  labs(x="High Memory time ratio", y="Number of devices")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+
+```
+
+## CPU
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df %>%
+  group_by(high_cpu_ratio = cut_width(`High device overall CPU time ratio [%]`, 10, boundary = 0)) %>%
+  summarize(number_of_devices = n(),
+            number_of_cores= round(mean(`Number of cores`,na.rm = T),0)) %>%
+  #filter(number_of_devices >=20) %>%
+  ggplot(mapping = aes(x=high_cpu_ratio)) +
+  geom_bar(aes(y=number_of_devices), stat = "identity",fill="#111F65", color = "black")+
+  geom_line(aes(y=number_of_cores*100), group=1)+
+  geom_point(aes(y=number_of_cores*100))+
+  scale_y_continuous(sec.axis = sec_axis(~./100, name="Cores"))+
+  geom_label_repel(aes(y=number_of_cores*100, label= paste("#",number_of_cores)),stat = "unique",size=5)+
+  theme_minimal()+
+  labs(x="High cpu time ratio",y="Number of devices")+
+  theme(axis.text.x = element_text(size = 16),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 16),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size=14))
+
+```
+
+# Applications
+## Overview
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.app %>%
+  group_by( `Application name`) %>%
+  summarize(`Number of devices` = sum(`Number of devices`),
+            `Number of executions` = sum(`Number of executions`),
+            `Average memory usage per execution (MB)` = round(mean(`Average memory usage per execution [MB]`, na.rm = T),1)) %>%
+  filter(`Number of devices`>100,`Average memory usage per execution (MB)` > 150) %>%
+  arrange(-`Average memory usage per execution (MB)`) %>%
+  formattable(align = c("c","c","c","c"))
+```
+
+## High number of Excecutions
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.app %>%
+  group_by( `Application name`) %>%
+  summarize(`Number of executions` = sum(`Number of executions`),
+            `Average memory usage per execution (MB)` = round(mean(`Average memory usage per execution [MB]`, na.rm = T),1)) %>%
+  filter(`Average memory usage per execution (MB)` > 40, `Number of executions` > 50000) %>%
+  arrange(-`Number of executions`) %>%
+  formattable(align = c("c","c","c"))
+```
+
+## Chrome
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.chr %>%
+  select(everything(), -`Executable name`,-`Application name`) %>%
+  arrange(-`Number of executions`) %>%
+  filter(`Number of devices` >= 10 & `Number of executions` > 4000) %>%
+  formattable(align=c("c","c","c","c"))
+```
+
+## Office
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.office %>%
+  arrange(-`Average memory usage per execution [MB]`) %>%
+  filter(`Number of devices` >= 500 & `Number of executions` > 4000) %>%
+  formattable(align=c("c","c","c","c","c"))
+```
+
+### Excel
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.office %>%
+  arrange(-`Average memory usage per execution [MB]`) %>%
+  filter(`Executable name` == 'excel.exe') %>%
+  filter(`Number of devices` >= 10 & `Number of executions` > 1000) %>%
+  formattable(align=c("c","c","c","c"))
+```
+
+
+### Word
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.office %>%
+  arrange(-`Average memory usage per execution [MB]`) %>%
+  filter(`Executable name` == 'winword.exe') %>%
+  filter(`Number of devices` >= 10 & `Number of executions` > 1000) %>%
+  formattable(align=c("c","c","c","c"))
+```
+
+
+### PowerPoint
+```{r echo=FALSE, eval=TRUE, fig.align="center", warning=FALSE,message=FALSE, fig.width=17,fig.height=12}
+df.office %>%
+  arrange(-`Average memory usage per execution [MB]`) %>%
+  filter(`Executable name` == 'powerpnt.exe') %>%
+  filter(`Number of devices` >= 10 & `Number of executions` > 1000) %>%
+  formattable(align=c("c","c","c","c","c"))
+```

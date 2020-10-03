@@ -1,0 +1,466 @@
+Executable name	Version	Number of executions	Average memory usage per execution [bytes]	Number of devices	Application name
+excel.exe	16.0.12527.20278	3	491432618	1	Microsoft Office
+excel.exe	16.0.12527.20278	108	485980676	1	Microsoft Office
+excel.exe	14.0.7235.5000	350	387535292	15	Microsoft Office 2010
+excel.exe	15.0.5153.1000	166	324943472	10	Microsoft Office 2013
+excel.exe	14.0.7237.5000	374	285946283	13	Microsoft Office 2010
+excel.exe	16.0.9126.2295	111	253742830	3	Microsoft Office 2016
+excel.exe	16.0.11929.20300	101	249099872	1	Microsoft Office
+powerpnt.exe	16.0.12231.20000	5	247883366	1	Microsoft Office
+winword.exe	16.0.11328.20526	19	240822954	1	Microsoft Office
+powerpnt.exe	15.0.4454.1000	4	239075328	1	Microsoft Office 2013
+excel.exe	16.0.11328.20554	1159	225420854	27	Microsoft Office
+lync.exe	16.0.12008.20000	4	224133120	1	Microsoft Office
+lync.exe	16.0.11929.20300	6	223975833	1	Microsoft Office
+excel.exe	16.0.11328.20512	35795	219424580	736	Microsoft Office
+excel.exe	16.0.11328.20368	13175	216547614	313	Microsoft Office
+powerpnt.exe	16.0.11929.20562	464	214920221	29	Microsoft Office
+lync.exe	16.0.11929.20606	80	201692921	9	Microsoft Office
+excel.exe	16.0.11328.20368	2613	200566364	20	Microsoft Office
+excel.exe	14.0.4756.1000	100	198680810	5	Microsoft Office 2010
+excel.exe	14.0.7015.1000	1722	194721856	50	Microsoft Office 2010
+excel.exe	14.0.7229.5000	480	192648363	13	Microsoft Office 2010
+powerpnt.exe	16.0.11328.20554	127	190476800	11	Microsoft Office
+powerpnt.exe	15.0.5093.1000	976	190097727	5	Microsoft Office 2013
+excel.exe	16.0.11328.20512	14013	187774231	202	Microsoft Office
+lync.exe	16.0.12527.20278	9	182550528	1	Microsoft Office
+powerpnt.exe	16.0.11929.20606	54	175796976	5	Microsoft Office
+powerpnt.exe	16.0.11328.20512	7226	174365027	470	Microsoft Office
+lync.exe	15.0.4551.1007	392	168827895	35	Microsoft Office 2013
+lync.exe	16.0.11328.20554	275	167894493	30	Microsoft Office
+winword.exe	16.0.12008.20000	1	164364288	1	Microsoft Office
+lync.exe	16.0.11929.20648	148	163446784	15	Microsoft Office
+winword.exe	15.0.5153.1000	47	163368140	7	Microsoft Office 2013
+lync.exe	16.0.11328.20512	9366	162936418	742	Microsoft Office
+lync.exe	16.0.11328.20368	3398	161673610	295	Microsoft Office
+powerpnt.exe	16.0.11328.20368	1966	151923233	169	Microsoft Office
+lync.exe	16.0.12325.20298	1	150208512	1	Microsoft Office
+lync.exe	16.0.11929.20562	709	148756951	72	Microsoft Office
+powerpnt.exe	16.0.11328.20368	142	146119065	10	Microsoft Office
+powerpnt.exe	16.0.12703.20010	1	144703488	1	Microsoft Office
+winword.exe	16.0.12703.20010	3	144179200	1	Microsoft Office
+excel.exe	14.0.7232.5000	147	139194461	6	Microsoft Office 2010
+winword.exe	16.0.11328.20554	262	133797985	17	Microsoft Office
+lync.exe	15.0.4551.1005	8	132710400	1	Microsoft Office 2013
+lync.exe	16.0.9126.2295	25	130065367	2	Microsoft Office 2016
+lync.exe	16.0.12703.20010	11	129618292	1	Microsoft Office
+winword.exe	16.0.4266.1001	3	128188416	1	Microsoft Office 2016
+lync.exe	16.0.11328.20468	29	127233774	4	Microsoft Office
+powerpnt.exe	14.0.7162.5000	108	124785537	6	Microsoft Office 2010
+lync.exe	16.0.11929.20648	48	124306773	6	Microsoft Office
+lync.exe	15.0.5159.1000	3185	123725867	360	Microsoft Office 2013
+powerpnt.exe	16.0.12008.20000	1	120324096	1	Microsoft Office
+lync.exe	16.0.12231.20000	8	118521856	1	Microsoft Office
+excel.exe	16.0.12231.20000	24	118382288	1	Microsoft Office
+lync.exe	15.0.4420.1017	23	117107133	4	Microsoft Office 2013
+excel.exe	14.0.7235.5000	18682	116245866	663	Microsoft Office 2010
+lync.exe	16.0.11328.20368	193	115991857	18	Microsoft Office
+excel.exe	16.0.11328.20468	72	114655232	1	Microsoft Office
+powerpnt.exe	16.0.11929.20648	69	112876122	8	Microsoft Office
+lync.exe	16.0.11328.20512	2242	111300190	203	Microsoft Office
+excel.exe	14.0.7015.1000	15983	110163866	569	Microsoft Office 2010
+lync.exe	16.0.12527.20278	5	109366476	1	Microsoft Office
+excel.exe	14.0.7237.5000	9983	109203054	410	Microsoft Office 2010
+lync.exe	16.0.11929.20562	1119	108412735	122	Microsoft Office
+winword.exe	16.0.11929.20606	261	108077959	8	Microsoft Office
+lync.exe	15.0.4551.1007	11832	107233419	1115	Microsoft Office 2013
+winword.exe	16.0.11929.20648	156	107137244	16	Microsoft Office
+excel.exe	16.0.11929.20648	1429	106945641	17	Microsoft Office
+winword.exe	16.0.11929.20562	791	106814976	54	Microsoft Office
+excel.exe	16.0.11328.20438	111	104519796	4	Microsoft Office
+excel.exe	16.0.12325.20298	34	100659655	1	Microsoft Office
+lynchtmlconv.exe	16.0.11328.20468	10	100604313	1	Microsoft Office
+lync.exe	16.0.12430.20184	29	98656538	1	Microsoft Office
+lync.exe	16.0.12325.20298	10	97412710	1	Microsoft Office
+powerpnt.exe	14.0.7162.5000	1524	96987842	97	Microsoft Office 2010
+winword.exe	16.0.11929.20300	12	94266982	1	Microsoft Office
+lync.exe	15.0.4420.1017	50	92398139	5	Microsoft Office 2013
+winword.exe	16.0.11328.20512	10055	92231569	646	Microsoft Office
+excel.exe	14.0.4756.1000	19	91733153	1	Microsoft Office 2010
+winword.exe	16.0.11328.20368	4264	91499382	274	Microsoft Office
+msaccess.exe	14.0.7195.5000	24	90992461	2	Microsoft Office 2010
+powerpnt.exe	16.0.11929.20562	338	90032933	37	Microsoft Office
+winword.exe	16.0.12231.20000	10	88919244	1	Microsoft Office
+powerpnt.exe	16.0.11328.20512	680	88738273	89	Microsoft Office
+powerpnt.exe	16.0.11328.20468	31	88300246	1	Microsoft Office
+winword.exe	16.0.12527.20278	2	87293952	1	Microsoft Office
+powerpnt.exe	14.0.6009.1000	600	87042866	44	Microsoft Office 2010
+lync.exe	16.0.12718.20010	4	84934656	1	Microsoft Office
+msaccess.exe	16.0.11929.20606	8	83722240	1	Microsoft Office
+excel.exe	16.0.11328.20554	445	83091146	13	Microsoft Office
+powerpnt.exe	16.0.11929.20648	39	81637160	5	Microsoft Office
+winword.exe	14.0.7228.5000	106	81030222	5	Microsoft Office 2010
+powerpnt.exe	14.0.4754.1000	46	80992938	4	Microsoft Office 2010
+visio.exe	15.0.4569.1504	79	79938599	9	Microsoft Office 2013
+excel.exe	14.0.7109.5000	14	78401220	1	Microsoft Office 2010
+winword.exe	14.0.7234.5000	13	74842112	2	Microsoft Office 2010
+excel.exe	15.0.5172.1000	11	73426534	1	Microsoft Office 2013
+lynchtmlconv.exe	16.0.11328.20438	16	72200192	3	Microsoft Office
+mspub.exe	16.0.11328.20368	3	70778880	3	Microsoft Office
+msaccess.exe	16.0.11328.20554	10	69992448	2	Microsoft Office
+excel.exe	14.0.7248.5000	12	69322524	1	Microsoft Office 2010
+powerpnt.exe	14.0.6009.1000	12479	66984343	923	Microsoft Office 2010
+winword.exe	16.0.11328.20512	1476	63460045	154	Microsoft Office
+lynchtmlconv.exe	16.0.9126.2295	26	63318698	2	Microsoft Office 2016
+excel.exe	14.0.7245.5000	21	63284645	1	Microsoft Office 2010
+winword.exe	16.0.9126.2295	13	62463089	1	Microsoft Office 2016
+lync.exe	15.0.4569.1503	54	62198518	6	Microsoft Office 2013
+msaccess.exe	16.0.11328.20368	31	61788745	5	Microsoft Office
+powerpnt.exe	14.0.4754.1000	33	61253632	3	Microsoft Office 2010
+excel.exe	16.0.11929.20606	104	59671340	4	Microsoft Office
+lync.exe	16.0.11328.20554	81	58857881	12	Microsoft Office
+mspub.exe	16.0.11328.20512	2	58589184	2	Microsoft Office
+lync.exe	16.0.11929.20606	54	58223274	4	Microsoft Office
+winword.exe	14.0.7228.5000	1026	58161339	79	Microsoft Office 2010
+winword.exe	16.0.11328.20368	161	58122398	11	Microsoft Office
+excel.exe	14.0.7239.5000	187	57527569	4	Microsoft Office 2010
+winword.exe	14.0.4762.1000	60	56314148	4	Microsoft Office 2010
+winword.exe	14.0.7248.5000	1	53215232	1	Microsoft Office 2010
+winword.exe	14.0.7246.5000	1163	51149945	61	Microsoft Office 2010
+powerpnt.exe	16.0.9126.2295	15	49816722	1	Microsoft Office 2016
+winword.exe	16.0.11929.20606	8	48775168	1	Microsoft Office
+winword.exe	16.0.11328.20468	8	48562176	1	Microsoft Office
+winword.exe	14.0.7246.5000	49	48338394	3	Microsoft Office 2010
+visio.exe	14.0.4756.1000	14	48300032	1	Microsoft Office 2010
+winword.exe	16.0.11929.20562	689	46659602	76	Microsoft Office
+excel.exe	16.0.11929.20606	688	46252392	8	Microsoft Office
+lync.exe	16.0.11328.20438	76	45729468	17	Microsoft Office
+groove.exe	16.0.12008.20000	12	44782933	1	Microsoft Office
+msaccess.exe	16.0.11328.20512	73	44472320	8	Microsoft Office
+msaccess.exe	16.0.11929.20562	5	44367872	2	Microsoft Office
+excel.exe	16.0.12430.20184	29	44211941	1	Microsoft Office
+excel.exe	16.0.11929.20562	4230	44103171	65	Microsoft Office
+winword.exe	16.0.11328.20554	29	43790531	4	Microsoft Office
+powerpnt.exe	16.0.11328.20554	18	43388472	3	Microsoft Office
+ucmapi.exe	16.0.12008.20000	4	43384832	1	Microsoft Office
+msaccess.exe	16.0.11328.20512	9	42642090	1	Microsoft Office
+excel.exe	16.0.11328.20492	4	41549824	1	Microsoft Office
+powerpnt.exe	16.0.11328.20492	2	40894464	1	Microsoft Office
+excel.exe	16.0.12703.20010	55	40671156	1	Microsoft Office
+winword.exe	14.0.7015.1000	596	40407927	43	Microsoft Office 2010
+mspub.exe	16.0.11328.20368	5	40108032	1	Microsoft Office
+winword.exe	14.0.7234.5000	1295	39119815	85	Microsoft Office 2010
+powerpnt.exe	16.0.11328.20438	8	38633472	2	Microsoft Office
+winword.exe	14.0.7236.5000	4399	38537381	336	Microsoft Office 2010
+officeclicktorun.exe	16.0.12718.20004	4	38436864	1	Microsoft Office
+officeclicktorun.exe	16.0.11328.20492	8	38010880	1	Microsoft Office
+winword.exe	14.0.7121.5004	4	37470208	1	Microsoft Office 2010
+winword.exe	16.0.11328.20492	2	36438016	1	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20606	72	35744889	8	Microsoft Office
+winword.exe	14.0.7015.1000	16178	35446142	925	Microsoft Office 2010
+officeclicktorun.exe	16.0.11328.20524	24	33610605	2	Microsoft Office
+visio.exe	14.0.7011.1000	25	33458858	3	Microsoft Office 2010
+officeclicktorun.exe	16.0.12008.20000	13	33030144	1	Microsoft Office
+officeclicktorun.exe	16.0.11629.20182	9	32818972	1	Microsoft Office
+visio.exe	14.0.7011.1000	59	32507092	5	Microsoft Office 2010
+winword.exe	16.0.11929.20648	45	31987961	5	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20648	44	30898296	6	Microsoft Office
+winword.exe	14.0.7236.5000	167	30597822	12	Microsoft Office 2010
+lynchtmlconv.exe	16.0.11328.20368	2485	30277750	272	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20562	577	27750250	67	Microsoft Office
+excel.exe	16.0.11929.20648	253	27433847	6	Microsoft Office
+officeclicktorun.exe	16.0.12527.20242	33	27357890	3	Microsoft Office
+officeclicktorun.exe	16.0.11929.20296	92	27303936	2	Microsoft Office
+officeclicktorun.exe	16.0.12624.20374	9	27226567	1	Microsoft Office
+lynchtmlconv.exe	16.0.11328.20512	6889	27134324	692	Microsoft Office
+lynchtmlconv.exe	16.0.12008.20000	5	27066368	1	Microsoft Office
+officec2rclient.exe	16.0.12527.20242	99	27000832	3	Microsoft Office
+winword.exe	14.0.4762.1000	6	26847914	2	Microsoft Office 2010
+excel.exe	16.0.11929.20562	4890	25797831	115	Microsoft Office
+winword.exe	16.0.12325.20298	4	25755648	1	Microsoft Office
+lynchtmlconv.exe	16.0.11328.20554	173	25046290	26	Microsoft Office
+officeclicktorun.exe	16.0.11328.20554	1546	24867271	150	Microsoft Office
+lynchtmlconv.exe	16.0.11328.20512	1984	24471343	195	Microsoft Office
+winproj.exe	14.0.7011.1000	7	24444928	1	Microsoft Office 2010
+lynchtmlconv.exe	16.0.11328.20368	179	24370144	18	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20300	7	23173529	1	Microsoft Office
+ucmapi.exe	16.0.11929.20300	5	22911385	1	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20562	950	22845001	113	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20648	141	22789014	15	Microsoft Office
+firstrun.exe	15.0.4569.1506	1	22675456	1	Microsoft Office
+ucmapi.exe	16.0.12527.20278	8	22188617	1	Microsoft Office
+officeclicktorun.exe	16.0.11929.20648	404	21835053	28	Microsoft Office
+lynchtmlconv.exe	16.0.12527.20278	6	21747029	1	Microsoft Office
+officeclicktorun.exe	16.0.11328.20468	26	21541398	5	Microsoft Office
+lynchtmlconv.exe	16.0.12325.20298	11	21345075	1	Microsoft Office
+officeclicktorun.exe	16.0.11328.20362	4912	21136696	508	Microsoft Office
+ucmapi.exe	16.0.12718.20010	1	20381696	1	Microsoft Office
+officeclicktorun.exe	16.0.11328.20512	13813	20283873	1107	Microsoft Office
+ocpubmgr.exe	16.0.11929.20562	1	20185088	1	Microsoft Office
+officeclicktorun.exe	16.0.11929.20586	224	20184481	17	Microsoft Office
+winproj.exe	14.0.4751.1000	5	19883622	2	Microsoft Office 2010
+msosync.exe	16.0.12008.20000	1	19660800	1	Microsoft Office
+lynchtmlconv.exe	15.0.5163.1000	2593	19303136	328	Microsoft Office 2013
+msouc.exe	16.0.11328.20512	4	18699605	3	Microsoft Office
+ucmapi.exe	15.0.5223.1000	22	18662865	2	Microsoft Office 2013
+groove.exe	16.0.12231.20000	2	18612224	1	Microsoft Office
+ucmapi.exe	16.0.12703.20010	8	18563072	1	Microsoft Office
+lynchtmlconv.exe	16.0.12527.20278	5	18197162	1	Microsoft Office
+ucmapi.exe	16.0.12231.20000	9	18137088	1	Microsoft Office
+officeclicktorun.exe	16.0.11328.20390	4	18087936	1	Microsoft Office
+excel.exe	16.0.10730.20304	3	18087936	1	Microsoft Office
+ucmapi.exe	16.0.12325.20298	1	17956864	1	Microsoft Office
+msaccess.exe	14.0.7015.1000	11	17498112	7	Microsoft Office 2010
+ucmapi.exe	16.0.12527.20278	4	17465344	1	Microsoft Office
+officeclicktorun.exe	16.0.12325.20280	30	17364855	3	Microsoft Office
+msosync.exe	16.0.11328.20468	6	17126741	1	Microsoft Office
+msosync.exe	16.0.11929.20300	1	17039360	1	Microsoft Office
+mspub.exe	15.0.4763.1000	4	16678912	2	Microsoft Office 2013
+officeclicktorun.exe	16.0.11328.20438	102	16646144	26	Microsoft Office
+officeclicktorun.exe	16.0.11929.20554	2204	16638910	232	Microsoft Office
+ucmapi.exe	16.0.11328.20554	242	16213879	29	Microsoft Office
+officeclicktorun.exe	16.0.10730.20304	4	16089088	1	Microsoft Office
+ucmapi.exe	16.0.11929.20648	134	16043114	15	Microsoft Office
+excelcnv.exe	16.0.11929.20606	24	15979861	1	Microsoft Office
+msosync.exe	16.0.11328.20554	6	15974400	2	Microsoft Office
+msosync.exe	16.0.11328.20554	14	15908864	6	Microsoft Office
+msosync.exe	16.0.11929.20648	2	15859712	1	Microsoft Office
+lync.exe	16.0.11328.20480	5	15767961	1	Microsoft Office
+msosync.exe	16.0.12527.20278	2	15761408	1	Microsoft Office
+ucmapi.exe	16.0.11929.20562	1024	15742965	120	Microsoft Office
+msosync.exe	16.0.11328.20512	141	15675707	39	Microsoft Office
+msosync.exe	16.0.11929.20606	1	15663104	1	Microsoft Office
+ucmapi.exe	16.0.12430.20184	30	15634705	1	Microsoft Office
+msosync.exe	16.0.9126.2295	4	15597568	1	Microsoft Office 2016
+groove.exe	14.0.7011.1000	8	15114240	1	Microsoft Office 2010
+msosync.exe	16.0.11328.20512	1550	15075207	237	Microsoft Office
+msosync.exe	16.0.11929.20648	21	14832981	5	Microsoft Office
+msosync.exe	16.0.12325.20298	3	14789290	1	Microsoft Office
+msosync.exe	16.0.11929.20562	77	14660403	15	Microsoft Office
+ucmapi.exe	16.0.11328.20512	8499	14582735	727	Microsoft Office
+ucmapi.exe	16.0.11328.20368	3089	14507727	291	Microsoft Office
+officeclicktorun.exe	16.0.9126.2295	33	14381980	4	Microsoft Office
+msosync.exe	16.0.11328.20368	58	14340247	8	Microsoft Office
+msosync.exe	16.0.11929.20562	127	14295170	20	Microsoft Office
+ucmapi.exe	16.0.11929.20606	77	14280811	8	Microsoft Office
+msosync.exe	16.0.11929.20606	10	14278656	2	Microsoft Office
+namecontrolserver.exe	16.0.12430.20264	3	14068394	1	Microsoft Office
+msosync.exe	16.0.12430.20184	21	14044364	1	Microsoft Office
+lynchtmlconv.exe	16.0.12703.20010	3	14024704	1	Microsoft Office
+msosync.exe	16.0.11328.20368	738	13898050	118	Microsoft Office
+ucmapi.exe	16.0.11929.20606	49	13852170	4	Microsoft Office
+ucmapi.exe	16.0.11929.20562	684	13840277	71	Microsoft Office
+hxtsr.exe	16.0.12624.20368	3147	13750644	48	Microsoft Office
+ocpubmgr.exe	16.0.11328.20368	27	13692169	4	Microsoft Office
+lync.exe	16.0.11328.20392	3	13653333	1	Microsoft Office
+officeclicktorun.exe	16.0.12703.20008	67	13529088	1	Microsoft Office
+ucmapi.exe	16.0.11328.20512	2022	13307755	201	Microsoft Office
+officeclicktorun.exe	16.0.11328.20478	5	13025280	1	Microsoft Office
+namecontrolserver.exe	16.0.11929.20562	1	12845056	1	Microsoft Office
+ucmapi.exe	16.0.12325.20298	9	12823210	1	Microsoft Office
+lynchtmlconv.exe	16.0.12231.20000	11	12399411	1	Microsoft Office
+hxaccounts.exe	16.0.12624.20368	4	12320768	2	Microsoft Office
+lynchtmlconv.exe	16.0.11929.20606	58	12230265	5	Microsoft Office
+ucmapi.exe	16.0.11929.20648	43	11378878	5	Microsoft Office
+lynchtmlconv.exe	15.0.4551.1001	9098	11044528	1005	Microsoft Office 2013
+officeclicktorun.exe	16.0.12231.20000	9	11024611	1	Microsoft Office
+ucmapi.exe	16.0.11328.20554	75	10891504	12	Microsoft Office
+ucmapi.exe	16.0.11328.20368	164	10883072	18	Microsoft Office
+ucmapi.exe	16.0.9126.2295	23	10713711	2	Microsoft Office 2016
+msosync.exe	16.0.4266.1001	1	10682368	1	Microsoft Office 2016
+lynchtmlconv.exe	15.0.4551.1006	302	10419049	32	Microsoft Office 2013
+officec2rclient.exe	16.0.11929.20648	1713	10267306	27	Microsoft Office
+ois.exe	14.0.7010.1000	7	10223616	2	Microsoft Office 2010
+msouc.exe	14.0.6108.5000	10	10125312	7	Microsoft Office 2010
+integrator.exe	16.0.11328.20362	102	10003681	19	Microsoft Office
+ucmapi.exe	15.0.4547.1000	8	9977856	1	Microsoft Office 2013
+protocolhandler.exe	16.0.11328.20368	26	9830400	11	Microsoft Office
+ucmapi.exe	16.0.11328.20438	25	9770106	2	Microsoft Office
+ois.exe	14.0.7010.1000	104	9684036	38	Microsoft Office 2010
+integrator.exe	16.0.11328.20512	15	9568256	8	Microsoft Office
+lynchtmlconv.exe	16.0.12430.20184	31	9552964	1	Microsoft Office
+ucmapi.exe	16.0.11328.20468	10	9417523	1	Microsoft Office
+ucmapi.exe	15.0.5159.1000	3151	9345946	344	Microsoft Office 2013
+officeclicktorun.exe	16.0.12430.20172	42	9327957	2	Microsoft Office
+namecontrolserver.exe	16.0.11328.20512	46	9303133	9	Microsoft Office
+sdxhelper.exe	16.0.12703.20010	76	9240576	1	Microsoft Office
+lynchtmlconv.exe	16.0.11328.20554	57	9005000	11	Microsoft Office
+ucmapi.exe	15.0.4551.1007	11422	8953694	1088	Microsoft Office 2013
+integrator.exe	16.0.11929.20648	31	8951621	4	Microsoft Office
+ocpubmgr.exe	16.0.11328.20512	20	8840461	2	Microsoft Office
+integrator.exe	16.0.12527.20184	8	8781824	1	Microsoft Office
+integrator.exe	16.0.11929.20648	21	8690073	3	Microsoft Office
+integrator.exe	16.0.11328.20362	27	8658313	4	Microsoft Office
+integrator.exe	16.0.11328.20554	83	8536776	40	Microsoft Office
+lynchtmlconv.exe	15.0.5223.1000	23	8525378	2	Microsoft Office 2013
+integrator.exe	16.0.11328.20512	4	8388608	2	Microsoft Office
+namecontrolserver.exe	15.0.4420.1017	2	8355840	1	Microsoft Office 2013
+ucmapi.exe	15.0.4551.1007	362	8247484	32	Microsoft Office 2013
+integrator.exe	16.0.11328.20554	125	8136903	62	Microsoft Office
+officec2rclient.exe	16.0.10730.20304	103	8126464	1	Microsoft Office
+ucmapi.exe	15.0.4569.1503	46	7823003	5	Microsoft Office 2013
+ucmapi.exe	15.0.4420.1017	40	7798784	4	Microsoft Office 2013
+setup.exe	16.0.11901.20000	27	7617070	18	Microsoft Office
+setup.exe	16.0.12325.20276	16	7528448	4	Microsoft Office
+officeclicktorun.exe	16.0.12430.20198	10	7500231	1	Microsoft Office
+ocpubmgr.exe	15.0.5159.1000	3	7492949	1	Microsoft Office 2013
+setup.exe	16.0.10810.33603	8	7421952	7	Microsoft Office 2016
+namecontrolserver.exe	16.0.11929.20562	6	7313817	3	Microsoft Office
+sdxhelper.exe	16.0.11929.20562	5317	7245368	79	Microsoft Office
+namecontrolserver.exe	14.0.7005.1000	45	7111541	14	Microsoft Office 2010
+sdxhelper.exe	16.0.11929.20606	356	6973030	4	Microsoft Office
+officec2rclient.exe	16.0.12430.20172	87	6946816	2	Microsoft Office
+officec2rclient.exe	16.0.11328.20468	202	6946816	5	Microsoft Office
+msoasb.exe	16.0.12527.20122	1	6946816	1	Microsoft Office
+ucmapi.exe	15.0.4420.1017	25	6891765	4	Microsoft Office 2013
+officec2rclient.exe	16.0.11328.20512	75742	6687543	1079	Microsoft Office
+officec2rclient.exe	16.0.11328.20478	161	6619136	1	Microsoft Office
+officec2rclient.exe	16.0.11328.20362	26900	6583497	496	Microsoft Office
+namecontrolserver.exe	16.0.11328.20512	17	6515049	4	Microsoft Office
+officec2rclient.exe	16.0.11328.20524	113	6509909	2	Microsoft Office
+sdxhelper.exe	16.0.12325.20298	136	6291456	1	Microsoft Office
+sdxhelper.exe	16.0.11929.20648	1415	6212812	18	Microsoft Office
+officec2rclient.exe	16.0.11929.20536	14795	6067274	219	Microsoft Office
+officec2rclient.exe	16.0.11328.20554	5514	6032508	147	Microsoft Office
+officec2rclient.exe	16.0.11629.20188	55	6029312	1	Microsoft Office
+officec2rclient.exe	16.0.11929.20586	1350	5976883	17	Microsoft Office
+officec2rclient.exe	16.0.12624.20374	17	5963776	1	Microsoft Office
+sdxhelper.exe	16.0.12430.20184	78	5909162	1	Microsoft Office
+msoasb.exe	16.0.11328.20362	32	5905521	2	Microsoft Office
+namecontrolserver.exe	16.0.11328.20368	2	5832704	2	Microsoft Office
+msosync.exe	15.0.4569.1503	292	5788249	20	Microsoft Office 2013
+sdxhelper.exe	16.0.11328.20368	14442	5637393	455	Microsoft Office
+sdxhelper.exe	16.0.11328.20512	8256	5587947	239	Microsoft Office
+officec2rclient.exe	16.0.12008.20000	80	5472256	1	Microsoft Office
+sdxhelper.exe	16.0.11929.20562	10201	5383881	137	Microsoft Office
+sdxhelper.exe	16.0.11328.20554	898	5373952	24	Microsoft Office
+sdxhelper.exe	16.0.11328.20512	32743	5285708	810	Microsoft Office
+sdxhelper.exe	16.0.11328.20368	724	5155498	21	Microsoft Office
+officec2rclient.exe	16.0.11328.20438	284	5095424	19	Microsoft Office
+namecontrolserver.exe	15.0.4545.1000	26	4912350	5	Microsoft Office 2013
+msosync.exe	14.0.7159.5000	33	4607379	2	Microsoft Office 2010
+msosync.exe	14.0.4757.1000	11	4605393	1	Microsoft Office 2010
+namecontrolserver.exe	16.0.11328.20554	1	4587520	1	Microsoft Office
+namecontrolserver.exe	15.0.4420.1017	138	4269056	17	Microsoft Office 2013
+msosync.exe	14.0.7011.1000	2226	4249977	220	Microsoft Office 2010
+osppsvc.exe	15.0.169.500	271	4084349	26	Microsoft Office
+msoasb.exe	16.0.12231.20000	14	4077275	1	Microsoft Office
+msosync.exe	14.0.7011.1000	151	4075465	14	Microsoft Office 2010
+lynchtmlconv.exe	15.0.4569.1503	41	4044050	5	Microsoft Office 2013
+sdxhelper.exe	16.0.11328.20554	1764	4010803	48	Microsoft Office
+msosync.exe	15.0.4420.1017	722	3987190	35	Microsoft Office 2013
+msoia.exe	16.0.12430.20172	15	3801088	1	Microsoft Office
+msoia.exe	16.0.11328.20554	581	3592914	46	Microsoft Office
+msoia.exe	16.0.11929.20430	1546	3584091	102	Microsoft Office
+msoia.exe	16.0.10730.20264	24628	3556920	1745	Microsoft Office
+msoia.exe	16.0.11328.20362	6457	3265663	447	Microsoft Office
+msoia.exe	16.0.11929.20436	2121	3228908	148	Microsoft Office
+appsharinghookcontroller.exe	16.0.11328.20070	5	3211264	4	Microsoft Office
+lynchtmlconv.exe	15.0.4420.1017	40	3149177	4	Microsoft Office 2013
+msoia.exe	16.0.11328.20512	3276	3004749	248	Microsoft Office
+ocpubmgr.exe	15.0.4551.1007	14	2906989	4	Microsoft Office 2013
+osppsvc.exe	14.0.370.400	8	2899968	1	Microsoft Office
+msoia.exe	16.0.11328.20512	12142	2867950	780	Microsoft Office
+msoia.exe	16.0.11328.20554	307	2861738	26	Microsoft Office
+osppsvc.exe	14.0.370.400	20193	2804959	1933	Microsoft Office
+appsharinghookcontroller64.exe	16.0.11328.20070	12	2752512	11	Microsoft Office
+lynchtmlconv.exe	15.0.4420.1017	15	2555904	3	Microsoft Office 2013
+msoia.exe	16.0.11328.20362	290	2424832	19	Microsoft Office
+msoia.exe	16.0.12430.20172	25	2293760	1	Microsoft Office
+msoia.exe	15.0.4569.1503	1931	311296	89	Microsoft Office 2013
+xlim.exe	16.0.12624.20018	12	244270	1	Microsoft Office
+hxoutlook.exe	16.0.12624.20348	11	196608	2	Microsoft Office
+hxcalendarappimm.exe	16.0.12624.20348	10	196608	3	Microsoft Office
+protocolhandler.exe	16.0.11929.20648	1	-	1	Microsoft Office
+officeclicktorun.exe	16.0.10730.20348	1	-	1	Microsoft Office
+databasecompare.exe	16.0.11328.20512	2	-	1	Microsoft Office
+powerpnt.exe	16.0.11929.20606	1	-	1	Microsoft Office
+excelcnv.exe	14.0.7235.5000	4	-	1	Microsoft Office 2010
+sdxhelper.exe	16.0.12718.20010	16	-	1	Microsoft Office
+excelcnv.exe	16.0.11328.20368	3	-	1	Microsoft Office
+msoia.exe	16.0.12718.20000	8	-	1	Microsoft Office
+officec2rclient.exe	16.0.12718.20000	20	-	1	Microsoft Office
+appsharinghookcontroller.exe	15.0.4551.1007	3	-	2	Microsoft Office 2013
+msouc.exe	16.0.11328.20368	2	-	2	Microsoft Office
+protocolhandler.exe	16.0.11929.20562	6	-	2	Microsoft Office
+lynchtmlconv.exe	16.0.12325.20298	1	-	1	Microsoft Office
+sdxhelper.exe	16.0.11328.20480	20	-	1	Microsoft Office
+excelcnv.exe	16.0.11328.20512	7	-	1	Microsoft Office
+vpreview.exe	16.0.11929.20562	6	-	1	Microsoft Office
+msohtmed.exe	15.0.4420.1017	8	-	8	Microsoft Office 2013
+msoia.exe	16.0.9126.2295	58	-	3	Microsoft Office 2016
+sdxhelper.exe	16.0.12430.20264	80	-	1	Microsoft Office
+protocolhandler.exe	16.0.11328.20512	96	-	10	Microsoft Office
+protocolhandler.exe	16.0.11328.20554	42	-	1	Microsoft Office
+fltldr.exe	16.0.11328.20314	175	-	33	Microsoft Office
+msohtmed.exe	15.0.4545.1000	6	-	6	Microsoft Office 2013
+msoia.exe	16.0.10730.20264	15	-	1	Microsoft Office
+officec2rclient.exe	16.0.9126.2295	537	-	4	Microsoft Office
+pdfreflow.exe	16.0.11328.20512	4	-	2	Microsoft Office
+msoia.exe	16.0.12325.20276	31	-	1	Microsoft Office
+sdxhelper.exe	16.0.11328.20468	90	-	4	Microsoft Office
+fltldr.exe	16.0.11929.20110	103	-	18	Microsoft Office
+protocolhandler.exe	14.0.7007.1000	180	-	31	Microsoft Office 2010
+officec2rclient.exe	16.0.12325.20296	321	-	3	Microsoft Office
+sdxhelper.exe	16.0.12231.20000	136	-	1	Microsoft Office
+msohtmed.exe	14.0.7007.1000	26	-	25	Microsoft Office 2010
+msohtmed.exe	14.0.4730.1010	2	-	2	Microsoft Office 2010
+msohtmed.exe	14.0.7007.1000	25	-	24	Microsoft Office 2010
+msoia.exe	16.0.12008.20000	20	-	1	Microsoft Office
+sdxhelper.exe	16.0.11929.20300	70	-	1	Microsoft Office
+sdxhelper.exe	16.0.12325.20298	98	-	1	Microsoft Office
+msohtmed.exe	14.0.7227.5000	3	-	3	Microsoft Office 2010
+excel.exe	16.0.12718.20010	1	-	1	Microsoft Office
+sdxhelper.exe	16.0.11328.20438	188	-	8	Microsoft Office
+sdxhelper.exe	16.0.11929.20648	551	-	8	Microsoft Office
+cmigrate.exe	15.0.4569.1503	118	-	5	Microsoft Office 2013
+fltldr.exe	16.0.11929.20110	29	-	14	Microsoft Office
+sdxhelper.exe	16.0.11328.20526	53	-	1	Microsoft Office
+msoia.exe	16.0.11328.20492	8	-	1	Microsoft Office
+msohtmed.exe	15.0.4454.1000	6	-	6	Microsoft Office 2013
+msohtmed.exe	15.0.4420.1017	7	-	7	Microsoft Office 2013
+officec2rclient.exe	16.0.11929.20296	79	-	2	Microsoft Office
+excelcnv.exe	14.0.7015.1000	8	-	2	Microsoft Office 2010
+officec2rclient.exe	16.0.12231.20000	83	-	1	Microsoft Office
+officec2rclient.exe	16.0.11328.20390	7	-	1	Microsoft Office
+ois.exe	14.0.4750.1000	5	-	1	Microsoft Office 2010
+sdxhelper.exe	16.0.12527.20278	65	-	1	Microsoft Office
+bcssync.exe	14.0.7005.1000	1857	-	840	Microsoft Office 2010
+sdxhelper.exe	16.0.11328.20492	10	-	1	Microsoft Office
+officec2rclient.exe	16.0.12703.20010	345	-	1	Microsoft Office
+orgchart.exe	16.0.11328.20512	1	-	1	Microsoft Office
+excel.exe	16.0.12008.20000	3	-	1	Microsoft Office
+bcssync.exe	14.0.7005.1000	95	-	46	Microsoft Office 2010
+fltldr.exe	16.0.11328.20362	2525	-	295	Microsoft Office
+osfinstaller.exe	16.0.10730.20304	16	-	1	Microsoft Office
+msoia.exe	16.0.12231.20000	23	-	1	Microsoft Office
+msoia.exe	16.0.11328.20524	28	-	1	Microsoft Office
+msohtmed.exe	14.0.7227.5000	23	-	17	Microsoft Office 2010
+sdxhelper.exe	16.0.11929.20606	1000	-	12	Microsoft Office
+protocolhandler.exe	14.0.7007.1000	8	-	2	Microsoft Office 2010
+msoia.exe	16.0.11328.20438	131	-	8	Microsoft Office
+msoia.exe	16.0.12703.20008	22	-	1	Microsoft Office
+msohtmed.exe	14.0.4730.1010	15	-	2	Microsoft Office 2010
+officec2rclient.exe	16.0.11328.20492	24	-	1	Microsoft Office
+bcssync.exe	14.0.4756.1000	14	-	5	Microsoft Office 2010
+integratedoffice.exe	16.0.11328.20362	1	-	1	Microsoft Office
+bcssync.exe	14.0.4756.1000	29	-	10	Microsoft Office 2010
+sdxhelper.exe	16.0.12527.20278	48	-	1	Microsoft Office
+protocolhandler.exe	15.0.4569.1503	6	-	3	Microsoft Office 2013
+lynchtmlconv.exe	16.0.12718.20010	4	-	1	Microsoft Office
+fltldr.exe	16.0.12703.20008	5	-	1	Microsoft Office
+msoia.exe	16.0.12527.20122	16	-	1	Microsoft Office
+cmigrate.exe	15.0.4420.1017	727	-	39	Microsoft Office 2013
+protocolhandler.exe	16.0.11328.20512	16	-	5	Microsoft Office
+sdxhelper.exe	16.0.12430.20184	50	-	1	Microsoft Office
+msoia.exe	15.0.4727.1000	46	-	2	Microsoft Office 2013
+msoia.exe	16.0.12325.20280	15	-	1	Microsoft Office
+pdfreflow.exe	16.0.11929.20562	4	-	2	Microsoft Office
+msoia.exe	16.0.11328.20468	54	-	4	Microsoft Office
+fltldr.exe	15.0.4545.1000	33	-	3	Microsoft Office 2013
+msoia.exe	16.0.11929.20234	5	-	1	Microsoft Office
+msoia.exe	16.0.11929.20234	20	-	1	Microsoft Office
+cmigrate.exe	15.0.4753.1000	7	-	1	Microsoft Office 2013
+protocolhandler.exe	16.0.11929.20562	5	-	1	Microsoft Office
+msoia.exe	16.0.10730.20304	13	-	1	Microsoft Office
+msouc.exe	16.0.11328.20512	1	-	1	Microsoft Office
+msoia.exe	16.0.12527.20122	14	-	1	Microsoft Office
+sdxhelper.exe	16.0.11929.20300	40	-	1	Microsoft Office
+msoia.exe	16.0.4266.1001	63	-	1	Microsoft Office 2016
+setlang.exe	16.0.11328.20368	2	-	2	Microsoft Office
+msqry32.exe	14.0.7010.1000	5	-	2	Microsoft Office 2010
+officec2rclient.exe	16.0.12430.20234	46	-	1	Microsoft Office
+hxtsr.exe	16.0.8241.4127	1	-	1	Microsoft Office 2016
+protocolhandler.exe	16.0.11328.20368	1	-	1	Microsoft Office
+mspub.exe	14.0.7011.1000	1	-	1	Microsoft Office 2010
+msoia.exe	16.0.11328.20478	16	-	1	Microsoft Office

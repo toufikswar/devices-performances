@@ -1,0 +1,36 @@
+Executable name	Version	Number of executions	Average memory usage per execution [bytes]	Number of devices	Application name
+chrome.exe	64.0.3282.140	94	76713373	1	Google Chrome
+chrome.exe	70.0.3538.77	625	56597938	1	Google Chrome
+chrome.exe	73.0.3683.75	778	61547570	1	Google Chrome
+chrome.exe	73.0.3683.86	108893	53832397	75	Google Chrome
+chrome.exe	74.0.3729.108	163164	45655049	129	Google Chrome
+chrome.exe	75.0.3770.80	225	11455157	1	Google Chrome
+chrome.exe	75.0.3770.142	216	42281642	1	Google Chrome
+chrome.exe	75.0.3770.142	6317	83845582	2	Google Chrome
+chrome.exe	76.0.3809.87	4351	47958961	2	Google Chrome
+chrome.exe	76.0.3809.100	561	37920811	1	Google Chrome
+chrome.exe	76.0.3809.132	8163	58990158	9	Google Chrome
+chrome.exe	77.0.3865.90	4785	59130841	4	Google Chrome
+chrome.exe	77.0.3865.120	21	21636242	1	Google Chrome
+chrome.exe	78.0.3904.87	487349	56689505	339	Google Chrome
+chrome.exe	78.0.3904.97	3548	81766414	4	Google Chrome
+chrome.exe	78.0.3904.108	9635	66099544	10	Google Chrome
+chrome.exe	79.0.3945.79	9607	51093211	6	Google Chrome
+chrome.exe	79.0.3945.88	19223	76675581	9	Google Chrome
+chrome.exe	79.0.3945.117	332	43531791	1	Google Chrome
+chrome.exe	79.0.3945.117	5442	46999054	4	Google Chrome
+chrome.exe	79.0.3945.130	3838683	52155008	2345	Google Chrome
+chrome.exe	80.0.3987.87	11367	40882449	9	Google Chrome
+chrome.exe	80.0.3987.100	13889	61628796	2	Google Chrome
+chrome.exe	80.0.3987.106	20111	112246018	6	Google Chrome
+chrome.exe	80.0.3987.116	11045	53683054	5	Google Chrome
+chrome.exe	80.0.3987.122	68500	43714929	46	Google Chrome
+chrome.exe	80.0.3987.132	200181	43463061	115	Google Chrome
+chrome.exe	80.0.3987.149	721818	45470449	419	Google Chrome
+chrome.exe	80.0.3987.162	27264	44151457	16	Google Chrome
+chrome.exe	80.0.3987.163	332431	42878914	256	Google Chrome
+chrome.exe	81.0.4015.0	95	8326595	1	Google Chrome
+chrome.exe	81.0.4044.83	450	62896792	1	Google Chrome
+chrome.exe	81.0.4044.92	41712	43927322	28	Google Chrome
+chrome.exe	81.0.4044.113	271	32372162	2	Google Chrome
+chrome.exe	82.0.4065.0	139	99944757	1	Chromium
