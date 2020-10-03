@@ -2,7 +2,7 @@
 
 You can view the results here : https://toufikswar.github.io/devices-performances/
 
-This project consists on an R analysis of a companies' devices performance.
+This project consists on an **R analysis** of a companies' devices performance.
 
 Devices are analysized from a hardware perspective:
 - Boot time
